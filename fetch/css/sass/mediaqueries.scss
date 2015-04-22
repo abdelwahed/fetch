@@ -1,0 +1,108 @@
+@import "style.scss";
+
+//include breakpoints to avoid horizontal scroll or more than 75 characters
+
+@media screen and (max-width: 500px) {
+	h1 {
+		font-size: 3em;
+	}
+	h2 {
+		font-size: 2em;
+	}
+	nav {
+		.navbar {
+			display: none;
+		}
+		#hamburger_icon {
+			display: block;
+			position: fixed;
+			top: 12px;
+			right: 12px;
+			width: 30px;
+			height: 22px;
+			cursor: pointer;
+			z-index: 101;
+			background-color: none;
+		}
+		.hamburger_bar {
+			position: absolute;
+			width: 30px;
+			height: 4px;
+			background-color: #fff;
+		}
+		#hamburger_top {
+			top: 0px;
+			transform-origin: 4px 10px 0px;
+			transform: matrix(1, 0, 0, 1, 0, 0);
+		}
+		#hamburger_middle {
+			top: 11px;
+			opacity: 1;
+		}
+		#hamburger_bottom {
+			top: 22px;
+			transform-origin: 4px -4px 0px;
+			transform: matrix(1, 0, 0, 1, 0, 0);
+		}
+			/* animate in from right when click hamburger */
+		/*#menu {
+			background-color: #000;
+			opacity: 0.8;
+			overflow: hidden;
+			position: fixed;
+			top: 0px;
+			right: -300px;
+			height: 100vh;
+			width: 250px;
+			text-align: left;
+			padding: 25px;
+			padding-top: 15vh;
+			z-index: 100;
+			-webkit-transition: all 0.5s ease;
+		    -moz-transition: all 0.5s ease;
+		    -ms-transition: all 0.5s ease;
+		    -o-transition: all 0.5s ease;
+		    transition: all 0.5s ease;
+		}
+		.menu-open {
+			right: 0px !important;
+		}
+		.menu-open-hBar {
+			background-color: #fff !important;
+			height: 3px;
+		}
+		#menu a {
+			display: block;
+			text-align: left;
+			color: #fff;
+			font-size: 1em;
+			padding: 1em;
+			text-decoration: none;
+		}
+		#menu a:hover {
+			color: #e0e0e0;
+			font-size: 1.5em;
+			-webkit-transition: all 0.75s ease;
+		    -moz-transition: all 0.75s ease;
+		    -ms-transition: all 0.75s ease;
+		    -o-transition: all 0.75s ease;
+		    transition: all 0.75s ease;
+		}
+		#menu a:active {
+			color: #e0e0e0;
+		}
+		#menu a:visited {
+			color:#e0e0e0;
+		}*/
+	}
+	/*#homeInfo {
+		background-image: url("../img/freyja_narrow.png");
+	}*/
+	.form-control {
+		width: 15vh;
+		margin: 2vh auto;
+	}
+	.btn {
+		margin-top: 2vh;
+	}
+}
