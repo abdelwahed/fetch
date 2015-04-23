@@ -44,56 +44,6 @@
 			transform-origin: 4px -4px 0px;
 			transform: matrix(1, 0, 0, 1, 0, 0);
 		}
-			/* animate in from right when click hamburger */
-		/*#menu {
-			background-color: #000;
-			opacity: 0.8;
-			overflow: hidden;
-			position: fixed;
-			top: 0px;
-			right: -300px;
-			height: 100vh;
-			width: 250px;
-			text-align: left;
-			padding: 25px;
-			padding-top: 15vh;
-			z-index: 100;
-			-webkit-transition: all 0.5s ease;
-		    -moz-transition: all 0.5s ease;
-		    -ms-transition: all 0.5s ease;
-		    -o-transition: all 0.5s ease;
-		    transition: all 0.5s ease;
-		}
-		.menu-open {
-			right: 0px !important;
-		}
-		.menu-open-hBar {
-			background-color: #fff !important;
-			height: 3px;
-		}
-		#menu a {
-			display: block;
-			text-align: left;
-			color: #fff;
-			font-size: 1em;
-			padding: 1em;
-			text-decoration: none;
-		}
-		#menu a:hover {
-			color: #e0e0e0;
-			font-size: 1.5em;
-			-webkit-transition: all 0.75s ease;
-		    -moz-transition: all 0.75s ease;
-		    -ms-transition: all 0.75s ease;
-		    -o-transition: all 0.75s ease;
-		    transition: all 0.75s ease;
-		}
-		#menu a:active {
-			color: #e0e0e0;
-		}
-		#menu a:visited {
-			color:#e0e0e0;
-		}*/
 	}
 	/*#homeInfo {
 		background-image: url("../img/freyja_narrow.png");
@@ -104,5 +54,20 @@
 	}
 	.btn {
 		margin-top: 2vh;
+	}
+
+
+	// BROWSE BY AREA BROWSE BY AREA BROWSE BY AREA BROWSE BY AREA BROWSE BY AREA
+	.typeTitleMap {
+		margin-left: 50vw;
+		padding: 5px 10px;
+
+		h1 {
+			font-size: 1em;
+			font-weight: 400;
+		}
+	}
+	#addNewSmall .whiteTransparentWrapper {
+		padding: 10px;
 	}
 }
