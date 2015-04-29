@@ -1,5 +1,17 @@
 $(document).ready(function(){
 
+        var searchType;
+
+        var all = ['food', 'bar', 'cafe', 'park', 'store', 'pet_store', 'veterinary_care'];
+        var food = ['food', 'restaurant', 'cafe', 'bakery', 'grocery_or_supermarket', 'meal_takeaway'];
+        var bars = ['bar'];
+        var coffee = ['cafe'];
+        var parks = ['park'];
+        var shops = ['store', 'book_store', 'bicycle_store', 'clothing_store', 'department_store', 'electronics_store', 'florist', 'furniture_store', 'hardware_store', 'home_goods_store', 'jewelry_store', 'shopping_mall']; 
+        var dogNeeds = ['pet_store', 'veterinary_care']; // terms: pet_store, veterinary_care
+
+        searchType = dogNeeds;
+
 // STICKY HEADER
         var stickyHeaderTop = $('.navbar').offset().top;
 
@@ -33,27 +45,72 @@ $(document).ready(function(){
             $("#hamburger_bottom").css("top", "22px");
         });
 
+// TYPE ICON CLICKS
+        $("#foodIcon").click(function() {
+            searchType = food;
+            // console.log( typeof searchType );
+            console.log('%c searchType = food', 'color: blue');
+        });
+        $("#barsIcon").click(function() {
+            searchType = bars;
+            console.log('searchType = bars');
+        });
+        $("#shopsIcon").click(function() {
+            searchType = shops;
+            console.log('searchType = shops');
+        });
+        $("#coffeeIcon").click(function() {
+            searchType = coffee;
+            console.log('searchType = coffee');
+        });
+        $("#parkIcon").click(function() {
+            searchType = parks;
+            console.log('searchType = parks');
+        });
+        $("#dogIcon").click(function() {
+            searchType = dogNeeds;
+            console.log('searchType = dog needs');
+        });
+
 // MAPPING
     
     // Google API Key: AIzaSyAtkpcLyTqPcP4K64ykd6Gdq7y2rx1aufo
 
         var map;
-        var city = new google.maps.LatLng(29.7604,-95.3698); //Houston
+        var city = new google.maps.LatLng(29.7580,-95.3698); //Houston
         // api can return based on "locality," postcode, neighborhood
 
-        var allFood; // terms: restaurant, cafe, bakery, food, 
-            // grocery_or_supermarket, meal_takeaway
-        var allBars; // term: bar
-        var allCoffee; // terms: cafe
-        var allParks; // terms: campground, park, stadium
-        var allShopping; // terms: book_store, bicycle_store, 
-            // clothing_store, department_store, 
-            // electronics_store, florist, furniture_store, 
-            // hardware_store, home_goods_store
-            // jewelry_store, shopping_mall, store
-        var allDogNeeds; // terms: pet_store, veterinary_care
+    // CHANGE TYPE TITLE ON MAP
+        if(searchType === all) {
+            $( ".typeTitleMap" ).append( "<h1>ALL</h1>" );
+            console.log('all');
+        }
+        if(searchType === food) {
+            $( ".typeTitleMap" ).append( "<h1>FOOD</h1>" );
+            console.log('food');
+        }
+        if(searchType === bars) {
+            $( ".typeTitleMap" ).append( "<h1>BARS</h1>" );
+            console.log('bars');
+        }
+        if(searchType === coffee) {
+            $( ".typeTitleMap" ).append( "<h1>COFFEE</h1>" );
+            console.log('coffee');
+        }
+        if(searchType === parks) {
+            $( ".typeTitleMap" ).append( "<h1>PARKS</h1>" );
+            console.log('parks');
+        }
+        if(searchType === shops) {
+            $( ".typeTitleMap" ).append( "<h1>SHOPS</h1>" );
+            console.log('shops');
+        }
+        if(searchType === dogNeeds) {
+            $( ".typeTitleMap" ).append( "<h1>DOG NEEDS</h1>" );
+            console.log('dog needs');
+        }
 
-        //initialize map into the "map" div
+    //initialize map into the "map" div
         function initializeMap() {
             
             // style for map
@@ -83,7 +140,7 @@ $(document).ready(function(){
 
             var mapOptions = {
                 center: city,
-                zoom: 15,
+                zoom: 12,
                 scrollwheel: false,
                 mapTypeControlOptions: {
                     mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
@@ -98,13 +155,14 @@ $(document).ready(function(){
 
             var request = {
                 location: city,
-                radius: '5000', // meters
-                query: ['dogs', 'bar']
+                radius: '99999', // meters
+                types: searchType,
+                query: 'dog'
             };
 
             service = new google.maps.places.PlacesService(map);
-            service.textSearch(request, callback);
-            service.getDetails(request, callDetails);
+            service.textSearch(request, callPlaces);
+            service.getDetails(request, callPlaces);
                 // can get: geometry.location
                 // name
                 // formatted_address, formatted_phone_number
@@ -114,16 +172,22 @@ $(document).ready(function(){
                 // place_id
                 // website
         }
+
     // ON LOAD OF PAGE, CALL INITIALIZE MAP FUNCTION
         google.maps.event.addDomListener(window, 'load', initializeMap);
         // initializeMap();
 
+        var placeId;
         var placeName;
         var placeRating;
+        var placeWebsite;
+        var placeAddress;
+        var placePhoneNumber;
+
         var marker;
         var infos = [];
 
-        function callback(results, status) {
+        function callPlaces(results, status) {
             if (status == google.maps.places.PlacesServiceStatus.OK) {
                 for (var i = 0; i < results.length; i++) {
                     var place = results[i];
@@ -135,12 +199,19 @@ $(document).ready(function(){
                             location: results[i].geometry.location,
                         }
                     });
+                    placeId = results[i].place_id;
                     placeName = results[i].name;
                     placeRating = results[i].rating;
+                    placeWebsite = results[i].website;
+                    placeAddress = results[i].formatted_address;
+                    placePhoneNumber = results[i].formatted_phone_number;
+
+                    // console.log(placeAddress);
+
         
                     var infoWindowContent = '<div id="content">'+'<div id="siteNotice">'+'</div>'+
                         '<h5 id="placeNameHeadingMap">' + placeName + '</h5>'+'<div id="placeRatingMap">'+
-                        '<h5>' + placeRating + '</h5>'+'</div>'+'</div>';
+                        '<p>Rating: ' + placeRating + '</p>'+'</div>'+'</div>';
 
                     var infowindow = new google.maps.InfoWindow({
                         content: infoWindowContent
@@ -160,6 +231,7 @@ $(document).ready(function(){
                 }
             }
         }
+
         function closeInfos(){
                 /* If there are infoWindows open on the map */
             if(infos.length > 0){    
@@ -172,14 +244,4 @@ $(document).ready(function(){
             }
         }
 
-
-  });
-//init
-// var init = function() {
-//     console.log('Bobo');
-//     initializeMap();
-    
-// };
-
-// //load listener
-// $(document).ready(init);
+});

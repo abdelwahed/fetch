@@ -49,6 +49,9 @@ section {
   	width: 100%;
   	margin: 0 auto;
 }
+a {
+	text-decoration: none;
+}
 h1 {
 	font-family: $t-font;
 	font-weight: 700;
@@ -188,6 +191,52 @@ input {
 
 #browseType {
 	background-color: $light-blue-transparent;
+	padding: 5vh;
+
+	.row {
+		margin-top: 12vh;
+		margin-left: 11.75vw;
+	}
+
+	.typeIcon {
+		width: $tennis-ball * 3;
+		height: $tennis-ball * 3;
+		margin-right: 11.5vw;
+		background: $mid-blue-color;
+		overflow: hidden;
+		-moz-border-radius: 100%;
+		-webkit-border-radius: 100%;
+		border-radius: 100%;
+		padding-left: 0;
+
+		a {
+			text-decoration: none;
+		}
+
+		img {
+			position: absolute;
+			/*margin-top: 5%;*/
+			padding: 5%;
+			z-index: 2;
+		}
+
+		.typeLabel {
+			position: absolute;
+			width: 150px;
+			margin: auto;
+			margin-top: 70%;
+			margin-left: 17%;
+			background-color: $red-color;
+			padding: 20px auto 20px auto;
+			z-index: 3;
+
+			h2 {
+				color: #fff;
+				margin: 0 auto;
+				text-align: center;
+			}
+		}
+	}
 }
 #addNew {
 	background-color: $red-color;
@@ -219,7 +268,7 @@ input {
 		color: $light-grey;
 	}
 	.btn {
-		margin-top: 3vh;
+		/*margin-top: 3vh;*/
 		border-color: $mid-blue-color;
 	}
 	footer {
@@ -241,6 +290,9 @@ input {
 		.rightFoot {
 			float: right;
 			text-align: right;
+		}
+		a {
+			text-decoration: none;
 		}
 	}
 }
@@ -348,6 +400,11 @@ input {
 	}
 }
 
+#placeRatingMap {
+	p {
+		color: $mid-blue-color;
+	}
+}
 
 
 

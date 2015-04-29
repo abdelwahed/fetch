@@ -4,7 +4,8 @@
 
 @media screen and (max-width: 500px) {
 	h1 {
-		font-size: 3em;
+		font-size: 4em;
+		line-height: 1em;
 	}
 	h2 {
 		font-size: 2em;
@@ -45,15 +46,34 @@
 			transform: matrix(1, 0, 0, 1, 0, 0);
 		}
 	}
-	/*#homeInfo {
-		background-image: url("../img/freyja_narrow.png");
-	}*/
+	#home {
+		padding: 5vh;
+	}
 	.form-control {
 		width: 15vh;
-		margin: 2vh auto;
+		margin: 1vh auto;
 	}
 	.btn {
 		margin-top: 2vh;
+	}
+	footer {
+		padding: 2vh;
+
+		h3 {
+			text-align: center;
+			line-height: 0.5em;
+		}
+		.leftFoot {
+			display: none;
+		}
+		.rightFoot {
+			display: none;
+		}
+	}
+	#addNew {
+		.whiteTransparentWrapper {
+			padding-top: 15%;
+		}
 	}
 
 
@@ -70,4 +90,29 @@
 	#addNewSmall .whiteTransparentWrapper {
 		padding: 10px;
 	}
+	#addNewSmall .submitText {
+		margin-left: 1vh;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

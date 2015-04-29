@@ -1,3 +1,9 @@
+<?php
+	if(isset($_GET['foods'])) 
+		if(... == true)
+			
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Fetch | finding dog-friendly places</title>
 	<meta name="description" content="Find all the dog-friendly locations in your area, and bring your dog with you wherever you go.">
+	<link rel="shortcut icon" href="img/favicon.ico">
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/mediaqueries.css">
@@ -32,7 +39,7 @@
 	</nav>
 	<section id="homeType">
 		<div class="typeTitleMap">
-			<h1>BARS</h1>
+			<!-- <h1>BARS</h1> -->
 		</div>
 		<div id="map-canvas">
 		</div>
@@ -73,7 +80,7 @@
 				<h3>CAREERS AT FETCH</h3>
 			</div>
 			<div class="rightFoot">
-				<h3>BROWSE FETCH</h3><br>
+				<a href="index.html#browseType"><h3>BROWSE FETCH</h3></a><br>
 				<h3>SUBMIT TO FETCH</h3><br>
 				<h3>BECOME A MEMBER OF FETCH</h3>
 			</div>
@@ -88,6 +95,6 @@
 <!--     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtkpcLyTqPcP4K64ykd6Gdq7y2rx1aufo"></script> -->
     <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
     <script src="js/bootstrap.min.js"></script>
-	<script src="./js/script.js"></script>
+	<script src="js/script.js"></script>
 </body>
 </html>

@@ -1,3 +1,7 @@
+<?php
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Fetch | finding dog-friendly places</title>
 	<meta name="description" content="Find all the dog-friendly locations in your area, and bring your dog with you wherever you go.">
+	<link rel="shortcut icon" href="img/favicon.ico">
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/mediaqueries.css">
@@ -44,6 +49,7 @@
 						<option><p>Coffee</p></option>
 						<option><p>Shopping</p></option>
 						<option><p>Dog Needs</p></option>
+						<option><p>All</p></option>
 					</select>
 			</div>
 			<div class="form-group">
@@ -53,31 +59,59 @@
 			<button type="submit" class="btn btn-default">Fetch!</button>
 		</form>
 	</section>
-	<section id="browseType">second div
+	<section id="browseType">
+		<div class="browse row">
+			<a href="type.html">
+				<div class="typeIcon col-md-4">
+				<img id="foodIcon" class="img-responsive center-block" src="img/foodPic.png">
+				<div class="typeLabel"><h2>FOOD</h2></div>
+				</div>
+			</a>
+			<a href="type.html"><div id="barsIcon" class="typeIcon col-md-4">
+				<img class="img-responsive center-block" src="img/barsPic.png">
+				<div class="typeLabel"><h2>BARS</h2></div>
+			</div></a>
+			<div id="shopsIcon" class="typeIcon col-md-4">
+				<a href="type.html"><img class="img-responsive center-block" src="img/shopsPic.png"></a>
+				<div class="typeLabel"><h2>SHOPS</h2></div>
+			</div>
+		</div>
+		<div class="browse row">
+			<a id="coffeeIcon" href="type.html">
+				<div  class="typeIcon col-md-4">
+					<img class="img-responsive center-block" src="img/coffeePic.png">
+					<div class="typeLabel"><h2>COFFEE</h2></div>
+				</div>
+			</a>
+			<a href="type.html">
+				<div id="parkIcon" class="typeIcon col-md-4">
+					<img class="img-responsive center-block" src="img/parksPic.png">
+					<div class="typeLabel"><h2>PARKS</h2></div>
+				</div>
+			</a>
+			<a href="type.html">
+				<div id="dogIcon" class="typeIcon col-md-4">
+					<img class="img-responsive center-block" src="img/dogPic.png">
+					<div class="typeLabel"><h2>DOG NEEDS</h2></div>
+				</div>
+			</a>
+		</div>
 	</section>
 	<section id="addNew">
 		<div class="whiteTransparentWrapper">
-		<h2>SUBMIT A NEW</h2><br>
+		<h2>JOIN FETCH. FIND</h2><br>
 		<h1>DOG – FRIENDLY</h1><br>
-		<h2>LOCATION</h2><br>
+		<h2>IN THE CITY</h2><br>
 		<form class="form-inline">
 			<div class="form-group">
-				<label for="type"><h4>Type: </h4></label>
-					<select class="form-control">
-						<option><p>Food</p></option>
-						<option><p>Bars</p></option>
-						<option><p>Parks</p></option>
-						<option><p>Coffee</p></option>
-						<option><p>Shopping</p></option>
-						<option><p>Dog Needs</p></option>
-					</select>
+				<label for="userName"><h4>User Name: </h4></label>
+				<input type="text" class="form-control" id="userName" placeholder="Dog puns preferred.">
 			</div>
 			<div class="form-group">
-				<label for="newName"><h4>Name: </h4></label>
-				<input type="text" class="form-control" id="newName" placeholder="What is it called?">
+				<label for="userLocation"><h4>Location: </h4></label>
+				<input type="text" class="form-control" id="userLocation" placeholder="Where are you?">
 			</div>
-			<br>
-			<button type="submit" class="btn btn-default">Submit</button>
+			<button type="submit" class="btn btn-default">JOIN</button>
 		</form>
 		</div>
 		<footer>
@@ -87,7 +121,7 @@
 				<h3>CAREERS AT FETCH</h3>
 			</div>
 			<div class="rightFoot">
-				<h3>BROWSE FETCH</h3><br>
+				<a href="index.html#browseType"><h3>BROWSE FETCH</h3></a><br>
 				<h3>SUBMIT TO FETCH</h3><br>
 				<h3>BECOME A MEMBER OF FETCH</h3>
 			</div>
@@ -98,10 +132,11 @@
 			</div>
 		</footer>
 	</section>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/jquery-1.11.1.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtkpcLyTqPcP4K64ykd6Gdq7y2rx1aufo"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtkpcLyTqPcP4K64ykd6Gdq7y2rx1aufo"></script> -->
     <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
     <script src="js/bootstrap.min.js"></script>
-	<script src="./js/script.js"></script>
+	<script src="js/script.js"></script>
 </body>
 </html>
