@@ -1,7 +1,38 @@
 <?php
 session_start();
 
-include "includes/main.php";
+if(isset($_GET['mapThings'])) {
+	if("1" == $_GET['mapThings']) {
+		$searchLocation = htmlspecialchars($_GET['searchLocation']);
+		$searchType = htmlspecialchars($_GET['type']);
+	}
+} else if( isset($_GET['type'])) {
+	$searchLocation = "Houston";
+	switch( $_GET['type'] ) {
+		case "food":
+		 	$searchType = ['food'];
+			break;
+		case "bars":
+			$searchType = ['bar'];
+			break;
+		case "coffee":
+			$searchType = ['coffee'];
+			break;
+		case "shops":
+			$searchType = ['shopping'];
+			break;
+		case "parks":
+			$searchType = ['park'];
+			break;
+		case "dogNeeds":
+			$searchType = ['dogNeeds'];
+			break;
+		}
+		//use these in an echo statement to call different js files based on the type down in the head link stack
+} else {
+	$searchLocation = "Houston";
+	$searchType = ['food', 'bar', 'coffee', 'shopping', 'park', 'dogNeeds'];
+}
 
 ?>
 <!DOCTYPE html>
@@ -37,7 +68,7 @@ include "includes/main.php";
 			</ul>
 		</div>
 	</nav>
-<!-- MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL -->
+<!-- MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS --> 
 	<div id="signUpModal" class="modal fade">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
@@ -49,18 +80,17 @@ include "includes/main.php";
 	      	<form class="form-inline" action="register.php" method="post">
 				<div class="form-group form-inline">
 					<label for="username"><h4>Username: </h4></label>
-					<input type="text" class="form-control" name="username" placeholder="Dog puns preferred." required autofocus>
+					<input type="text" class="form-control" name="username" placeholder="Dog puns preferred.">
 				</div>
 				</div>
 				<div class="form-group form-inline">
 					<label for="password"><h4>Password: </h4></label>
-					<input type="password" class="form-control" name="password" placeholder="password" required>
+					<input type="text" class="form-control" name="password" placeholder="password">
 				</div>
 				<div class="form-group form-inline">
     				<label for="profilePic"><h4>Upload a Profile Picture: </h4></label>
-    				<input type="file" id="profilePic" class="btn btn-default">
+    				<input type="file" id="profilePic">
  				 </div>
- 				 <p><input type="hidden" name="submitted" value="1"></p>
 				<button type="submit" class="btn btn-default">JOIN</button>
 			</form>
 	      </div>
@@ -68,7 +98,7 @@ include "includes/main.php";
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
-<!-- MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL -->
+<!-- MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS -->
 	<div id="logInModal" class="modal fade">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
@@ -80,14 +110,13 @@ include "includes/main.php";
 	      	<form class="form-inline" action="login.php" method="post">
 				<div class="form-group form-inline">
 					<label for="username"><h4>Username: </h4></label>
-					<input type="text" class="form-control" name="username" placeholder="username" required autofocus>
+					<input type="text" class="form-control" name="username" placeholder="username">
 				</div>
 				</div>
 				<div class="form-group form-inline">
 					<label for="password"><h4>Password: </h4></label>
-					<input type="password" class="form-control" name="password" placeholder="password" required>
+					<input type="text" class="form-control" name="password" placeholder="password">
 				</div>
-				<p><input type="hidden" name="submitted" value="1"></p>
 				<button type="submit" class="btn btn-default">LOG IN</button>
 			</form>
 	      </div>
@@ -95,89 +124,27 @@ include "includes/main.php";
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
-<!-- HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME-->
-	<section id="home">
-		<h2>FIND</h2><br>
-		<h1>DOG – FRIENDLY</h1><br>
-		<h2>IN THE CITY</h2><br>
-		<form class="form-inline" action="type.php" method="get">
-			<div class="form-group">
-				<label for="type"><h4>Type: </h4></label>
-					<select class="form-control" name="type">
-						<option><p>Food</p></option>
-						<option><p>Bars</p></option>
-						<option><p>Parks</p></option>
-						<option><p>Coffee</p></option>
-						<option><p>Shopping</p></option>
-						<option><p>Dog Needs</p></option>
-						<option><p>All</p></option>
-					</select>
-			</div>
-			<div class="form-group">
-				<label for="searchLocation"><h4>City, State: </h4></label>
-				<input type="text" class="form-control" name="searchLocation" placeholder="Houston, TX">
-			</div>
-			<p><input type="hidden" name="mapThings" value="1"></p>
-			<button type="submit" class="btn btn-default">Fetch!</button>
-		</form>
-	</section>
-	<section id="browseType">
-		<div class="browse row">
-			<a href="type.php?type=food">
-				<div class="typeIcon col-md-4">
-					<img id="foodIcon" class="img-responsive center-block" src="img/foodPic.png">
-					<div class="typeLabel"><h2>FOOD</h2></div>
-					<p><input type="hidden" name="mapThings" value="2"></p>
-				</div>
-			</a>
-			<a href="type.php?type=bars">
-				<div id="barsIcon" class="typeIcon col-md-4">
-					<img class="img-responsive center-block" src="img/barsPic.png">
-					<div class="typeLabel"><h2>BARS</h2></div>
-					<p><input type="hidden" name="mapThings" value="2"></p>
-				</div>
-			</a>
-			<a href="type.php?type=shops">
-				<div id="shopsIcon" class="typeIcon col-md-4">
-					<img class="img-responsive center-block" src="img/shopsPic.png"></a>
-					<div class="typeLabel"><h2>SHOPS</h2></div>
-					<p><input type="hidden" name="mapThings" value="2"></p>
-				</div>
-			</a>
-		</div>
-		<div class="browse row">
-			<a href="type.php?type=coffee">
-				<div id="coffeeIcon"  class="typeIcon col-md-4">
-					<img class="img-responsive center-block" src="img/coffeePic.png">
-					<div class="typeLabel"><h2>COFFEE</h2></div>
-					<p><input type="hidden" name="mapThings" value="2"></p>
-				</div>
-			</a>
-			<a href="type.php?type=park">
-				<div id="parkIcon" class="typeIcon col-md-4">
-					<img class="img-responsive center-block" src="img/parksPic.png">
-					<div class="typeLabel"><h2>PARKS</h2></div>
-					<p><input type="hidden" name="mapThings" value="2"></p>
-				</div>
-			</a>
-			<a href="type.php?type=dogNeeds">
-				<div id="dogIcon" class="typeIcon col-md-4">
-					<img class="img-responsive center-block" src="img/dogPic.png">
-					<div class="typeLabel"><h2>DOG NEEDS</h2></div>
-					<p><input type="hidden" name="mapThings" value="2"></p>
-				</div>
-			</a>
+<!-- MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->
+	<section id="homeType">
+		<div class="typeTitleMap"></div>
+		<div id="map-canvas">
 		</div>
 	</section>
-	<section id="addNew">
+<!-- LIST LIST LIST LIST LIST LIST LIST LIST LIST LIST LIST LIST LIST -->
+	<section id="typeList">second div
+	</section>
+<!-- FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER -->
+	<div id="addNewSmall">
 		<div class="whiteTransparentWrapper">
-		<h2>SUBMIT A NEW</h2><br>
-		<h1>DOG – FRIENDLY</h1><br>
-		<h2>PLACE IN THE CITY</h2><br>
-		<form class="form-inline">
+		<div class="submitText">
+			<h2>SUBMIT A NEW</h2><br>
+			<h1>DOG – FRIENDLY</h1><br>
+			<h2>LOCATION</h2><br>
+		</div>
+		<form id="smallForm" class="form-inline">
 			<div class="form-group">
-				<label for="type"><h4>Type: </h4></label>
-					<select class="form-control">
+				<label for="newPlaceType"><h4>Type: </h4></label>
+					<select id="newPlaceType" class="form-control">
 						<option><p>Food</p></option>
 						<option><p>Bars</p></option>
 						<option><p>Parks</p></option>
@@ -187,10 +154,11 @@ include "includes/main.php";
 					</select>
 			</div>
 			<div class="form-group">
-				<label for="newPlaceName"><h4>Name of Place: </h4></label>
+				<label for="newPlaceName"><h4>Name: </h4></label>
 				<input type="text" class="form-control" id="newPlaceName" placeholder="What is it called?">
 			</div>
-			<button type="submit" class="btn btn-default">SUBMIT!</button>
+			<br>
+			<button type="submit" class="btn btn-default">Submit</button>
 		</form>
 		</div>
 		<footer>
@@ -210,12 +178,12 @@ include "includes/main.php";
 				<h3>INSTAGRAM</h3>
 			</div>
 		</footer>
-	</section>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	</div>
     <script src="js/jquery-1.11.1.min.js"></script>
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtkpcLyTqPcP4K64ykd6Gdq7y2rx1aufo"></script> -->
+<!--     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtkpcLyTqPcP4K64ykd6Gdq7y2rx1aufo"></script> -->
     <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
     <script src="js/bootstrap.min.js"></script>
 	<script src="js/script.js"></script>
+	<!-- <?php echo'<script src="js/script-food.js"></script>'?> -->
 </body>
 </html>

@@ -161,10 +161,12 @@ nav {
 	}
 	a {
 		text-decoration: none;
+		cursor: pointer;
 	}
 	a:hover {
 		color: $mid-blue-color !important;
 		background-color: $light-blue-color !important;
+		cursor: pointer;
 	}
 }
 
@@ -298,7 +300,7 @@ input {
 }
 
 
-/* BROWSE BY AREA */ /* BROWSE BY AREA */ /* BROWSE BY AREA */ /* BROWSE BY AREA */
+/* BROWSE BY TYPE */ /* BROWSE BY TYPE */ /* BROWSE BY TYPE */ /* BROWSE BY AREA */
 
 
 #map-canvas {
@@ -406,9 +408,36 @@ input {
 	}
 }
 
+/* DASHBOARD */ /* DASHBOARD */ /* DASHBOARD */ /* DASHBOARD */ /* DASHBOARD */
+#dashboard {
+	width: 100vw;
+	height: 100vh;
+	background-color: $light-blue-transparent;
+	margin: 0 auto;
+	text-align: center;
+	color: black;
+}
+header {
+	padding: 5%;
 
-
-
+	h2 {
+		color: $red-color;
+	}
+}
+#upload {
+	label {
+		margin: 2%;
+	}
+	input {
+		margin: 0 auto;
+	}
+	button {
+		margin-top: 2%;
+	}
+}
+.signUpFoot {
+	cursor: pointer;
+}
 
 
 

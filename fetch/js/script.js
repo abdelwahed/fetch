@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-        var searchType;
+        // var searchType = <?php echo json_encode(utf8_encode($searchType)); ?>;
 
         var all = ['food', 'bar', 'cafe', 'park', 'store', 'pet_store', 'veterinary_care'];
         var food = ['food', 'restaurant', 'cafe', 'bakery', 'grocery_or_supermarket', 'meal_takeaway'];
@@ -10,7 +10,7 @@ $(document).ready(function(){
         var shops = ['store', 'book_store', 'bicycle_store', 'clothing_store', 'department_store', 'electronics_store', 'florist', 'furniture_store', 'hardware_store', 'home_goods_store', 'jewelry_store', 'shopping_mall']; 
         var dogNeeds = ['pet_store', 'veterinary_care']; // terms: pet_store, veterinary_care
 
-        searchType = dogNeeds;
+        var searchType = parks;
 
 // STICKY HEADER
         var stickyHeaderTop = $('.navbar').offset().top;
@@ -34,6 +34,21 @@ $(document).ready(function(){
             scrollTop: $("#home").offset().top
             }, 1000);
         });
+        $('#signUpNav').click(function() {
+            $('#signUpModal').modal({
+                show: true
+            });
+        });
+        $('#logInNav').click(function() {
+            $('#logInModal').modal({
+                show: true
+            });
+        });
+        $('signUpFoot').click(function() {
+            $('#signUpModal').modal({
+                show: true
+            });
+        });
 
         //HAMBURGER ICON HOVER
         $("#hamburger_icon").mouseenter(function() {
@@ -45,32 +60,32 @@ $(document).ready(function(){
             $("#hamburger_bottom").css("top", "22px");
         });
 
-// TYPE ICON CLICKS
-        $("#foodIcon").click(function() {
-            searchType = food;
-            // console.log( typeof searchType );
-            console.log('%c searchType = food', 'color: blue');
-        });
-        $("#barsIcon").click(function() {
-            searchType = bars;
-            console.log('searchType = bars');
-        });
-        $("#shopsIcon").click(function() {
-            searchType = shops;
-            console.log('searchType = shops');
-        });
-        $("#coffeeIcon").click(function() {
-            searchType = coffee;
-            console.log('searchType = coffee');
-        });
-        $("#parkIcon").click(function() {
-            searchType = parks;
-            console.log('searchType = parks');
-        });
-        $("#dogIcon").click(function() {
-            searchType = dogNeeds;
-            console.log('searchType = dog needs');
-        });
+// // TYPE ICON CLICKS
+//         $("#foodIcon").click(function() {
+//             searchType = food;
+//             // console.log( typeof searchType );
+//             console.log('%c searchType = food', 'color: blue');
+//         });
+//         $("#barsIcon").click(function() {
+//             searchType = bars;
+//             console.log('searchType = bars');
+//         });
+//         $("#shopsIcon").click(function() {
+//             searchType = shops;
+//             console.log('searchType = shops');
+//         });
+//         $("#coffeeIcon").click(function() {
+//             searchType = coffee;
+//             console.log('searchType = coffee');
+//         });
+//         $("#parkIcon").click(function() {
+//             searchType = parks;
+//             console.log('searchType = parks');
+//         });
+//         $("#dogIcon").click(function() {
+//             searchType = dogNeeds;
+//             console.log('searchType = dog needs');
+//         });
 
 // MAPPING
     
@@ -162,7 +177,7 @@ $(document).ready(function(){
 
             service = new google.maps.places.PlacesService(map);
             service.textSearch(request, callPlaces);
-            service.getDetails(request, callPlaces);
+            // service.getDetails(request, callPlaces);
                 // can get: geometry.location
                 // name
                 // formatted_address, formatted_phone_number
@@ -206,12 +221,14 @@ $(document).ready(function(){
                     placeAddress = results[i].formatted_address;
                     placePhoneNumber = results[i].formatted_phone_number;
 
+
+                    console.log(results[i]);
                     // console.log(placeAddress);
 
         
                     var infoWindowContent = '<div id="content">'+'<div id="siteNotice">'+'</div>'+
                         '<h5 id="placeNameHeadingMap">' + placeName + '</h5>'+'<div id="placeRatingMap">'+
-                        '<p>Rating: ' + placeRating + '</p>'+'</div>'+'</div>';
+                        '<p>' + placeAddress + '</br>Rating: '+ placeRating + '</p>'+'</div>'+'</div>';
 
                     var infowindow = new google.maps.InfoWindow({
                         content: infoWindowContent
