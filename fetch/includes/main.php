@@ -241,7 +241,7 @@ function insertNewFile($username, $path, $name, $type)
             "INSERT INTO file (username,path,name,format) " .
             "VALUES (:username,:path,:name,:format)"
         );
-
+        print_r('insertNewFile line 244');
         $statement -> execute(
             array(
                 'username' => $username,
@@ -250,7 +250,6 @@ function insertNewFile($username, $path, $name, $type)
                 'format'   => $type
             )
         );
-        print_r($type);
         $statement = null;
     } catch(PDOException $e) {
         echo "<div>Error thrown in <code>insertNewFile</code></div>";

@@ -44,7 +44,7 @@ $amount_of_links = count($links);
 		</a>
 		<div class="navbar">
 			<ul class="nav navbar-nav">
-				<li id="areaNav"><a href="way.php"><h3>FIND YOUR WAY</h3></a></li>
+				<li id="areaNav"><a href="index.php"><h3>TO HOMEPAGE</h3></a></li>
 				<li id="logOutNav"><a href="./logout.php"><h3>LOG OUT</h3></a></li>
 				<li id="tennisball"><a href="index.php"><img class="img-responsive center-block" src="img/tennisball.png"></a></li>
 				<li id="signUpNav" data-toggle="signUpModal" data-target="#signUpModal"><a><h3>SIGN UP</h3></a></li>
@@ -57,16 +57,15 @@ $amount_of_links = count($links);
 			<h2>HOME</h2>
 		</header>
 		<p>Hi, <strong><?php echo $username; ?></strong>. How’s your puppy?</p>
-		<dl>
 			<?php
 			//shows list of all files uploaded as links to show contents in another window
 			   for( $index = 0; $index < $amount_of_links; $index++ )
-			      echo "         <dd><a href=\"uploads/$links[$index]\">$links[$index]</a></dd>\n";
+			   		echo "<img class='dashboardImg img-responsive center-block' src='uploads/".$links[$index]."'>";
+			      //echo "         <dd><a href=\"uploads/$links[$index]\">$links[$index]</a></dd>\n";
 			?>
-		</dl>
 		<div id="upload">
 			<form enctype="multipart/form-data" action="upload.php" method="post">
-				<label for="document"><h4>Upload some photos of your dog: </h4></label>
+				<label for="document"><h4>Upload a photo of your dog: </h4></label>
 				<p><input class="btn btn-default" type="file" name="document" /></p>
 				<button type="submit" class="btn btn-default" value="UPLOAD">UPLOAD</button>
 			</form>
@@ -119,6 +118,7 @@ $amount_of_links = count($links);
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtkpcLyTqPcP4K64ykd6Gdq7y2rx1aufo"></script> -->
     <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/nav.js"></script>
 	<script src="js/script.js"></script>
 </body>
 </html>

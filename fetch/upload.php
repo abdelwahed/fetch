@@ -27,13 +27,14 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET') {
                     $_FILES['document']['tmp_name'], $path . $filename
                 );
                 if ($move_file_successfully) {
+                    print_r('move_file_successfully');
                     insertNewFile(
                         $_SESSION['username'],
                         $path,
                         $filename,
                         $mime_type
                     );
-                    header("Refresh: 1; dashboard.php");
+                    header("Refresh: 6; dashboard.php");
                 } else {
                     echo "<div>File {$_FILES['document']['name']} was not moved " .
                          "successfully. The error may stem from a permissions " .

@@ -1,39 +1,5 @@
 <?php
 session_start();
-
-if(isset($_GET['mapThings'])) {
-	if("1" == $_GET['mapThings']) {
-		$searchLocation = htmlspecialchars($_GET['searchLocation']);
-		$searchType = htmlspecialchars($_GET['type']);
-	}
-} else if( isset($_GET['type'])) {
-	$searchLocation = "Houston";
-	switch( $_GET['type'] ) {
-		case "food":
-		 	$searchType = ['food'];
-			break;
-		case "bars":
-			$searchType = ['bar'];
-			break;
-		case "coffee":
-			$searchType = ['coffee'];
-			break;
-		case "shops":
-			$searchType = ['shopping'];
-			break;
-		case "parks":
-			$searchType = ['park'];
-			break;
-		case "dogNeeds":
-			$searchType = ['dogNeeds'];
-			break;
-		}
-		//use these in an echo statement to call different js files based on the type down in the head link stack
-} else {
-	$searchLocation = "Houston";
-	$searchType = ['food', 'bar', 'coffee', 'shopping', 'park', 'dogNeeds'];
-}
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -60,7 +26,7 @@ if(isset($_GET['mapThings'])) {
 		</a>
 		<div class="navbar">
 			<ul class="nav navbar-nav">
-				<li id="areaNav"><a href="way.php"><h3>FIND YOUR WAY</h3></a></li>
+				<li id="areaNav"><a href="dashboard.php"><h3>YOUR DASHBOARD</h3></a></li>
 				<li id="logInNav" data-toggle="logInModal" data-target="#logInModal"><a><h3>LOG IN</h3></a></li>
 				<li id="tennisball"><a href="index.php"><img class="img-responsive center-block" src="img/tennisball.png"></a></li>
 				<li id="signUpNav" data-toggle="signUpModal" data-target="#signUpModal"><a><h3>SIGN UP</h3></a></li>
@@ -77,27 +43,32 @@ if(isset($_GET['mapThings'])) {
 	        <h4 class="modal-title">SIGN UP</h4>
 	      </div>
 	      <div class="modal-body">
-	      	<form class="form-inline" action="register.php" method="post">
-				<div class="form-group form-inline">
-					<label for="username"><h4>Username: </h4></label>
-					<input type="text" class="form-control" name="username" placeholder="Dog puns preferred.">
+	      <div class="container-fluid">
+	      	<form class="form-horizontal" action="register.php" method="post">
+				<div class="form-group">
+					<label for="username" class="col-sm-2 control-label"><h4>Username: </h4></label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="username" placeholder="Dog puns preferred." required autofocus>
+					</div>
 				</div>
 				</div>
-				<div class="form-group form-inline">
-					<label for="password"><h4>Password: </h4></label>
-					<input type="text" class="form-control" name="password" placeholder="password">
+				<div class="form-group">
+					<label for="password" class="col-sm-2 control-label"><h4>Password: </h4></label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control" name="password" placeholder="password" required>
+					</div>
 				</div>
-				<div class="form-group form-inline">
-    				<label for="profilePic"><h4>Upload a Profile Picture: </h4></label>
-    				<input type="file" id="profilePic">
- 				 </div>
-				<button type="submit" class="btn btn-default">JOIN</button>
+ 				<p><input type="hidden" name="submitted" value="1"></p>
+ 				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-default">JOIN</button>
+				</div>
 			</form>
+			</div>
 	      </div>
 	      <div class="modal-footer"></div>
-	    </div><!-- /.modal-content -->
-	  </div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
+	    </div>
+	  </div>
+	</div>
 <!-- MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS -->
 	<div id="logInModal" class="modal fade">
 	  <div class="modal-dialog">
@@ -107,31 +78,37 @@ if(isset($_GET['mapThings'])) {
 	        <h4 class="modal-title">LOG IN</h4>
 	      </div>
 	      <div class="modal-body">
-	      	<form class="form-inline" action="login.php" method="post">
-				<div class="form-group form-inline">
-					<label for="username"><h4>Username: </h4></label>
-					<input type="text" class="form-control" name="username" placeholder="username">
+	      <div class="container-fluid">
+	      	<form class="form-horizontal" action="login.php" method="post">
+				<div class="form-group">
+					<label for="username" class="col-sm-2 control-label"><h4>Username: </h4></label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="username" placeholder="username" required autofocus>
+					</div>
 				</div>
 				</div>
-				<div class="form-group form-inline">
-					<label for="password"><h4>Password: </h4></label>
-					<input type="text" class="form-control" name="password" placeholder="password">
+				<div class="form-group">
+					<label for="password" class="col-sm-2 control-label"><h4>Password: </h4></label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control" name="password" placeholder="password" required>
+					</div>
 				</div>
-				<button type="submit" class="btn btn-default">LOG IN</button>
+				<p><input type="hidden" name="submitted" value="1"></p>
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-default">LOG IN</button>
+				</div>
 			</form>
 	      </div>
+	      </div>
 	      <div class="modal-footer"></div>
-	    </div><!-- /.modal-content -->
-	  </div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
+	    </div>
+	  </div>
+	</div>
 <!-- MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->
 	<section id="homeType">
 		<div class="typeTitleMap"></div>
 		<div id="map-canvas">
 		</div>
-	</section>
-<!-- LIST LIST LIST LIST LIST LIST LIST LIST LIST LIST LIST LIST LIST -->
-	<section id="typeList">second div
 	</section>
 <!-- FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER -->
 	<div id="addNewSmall">
@@ -181,9 +158,40 @@ if(isset($_GET['mapThings'])) {
 	</div>
     <script src="js/jquery-1.11.1.min.js"></script>
 <!--     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtkpcLyTqPcP4K64ykd6Gdq7y2rx1aufo"></script> -->
+<?php
+// search from icon clicks
+if( isset($_GET['type'])) {
+	$searchLocation = "Houston";
+	$toPrint = "<script src=";
+	switch( $_GET['type'] ) {
+		case "food":
+		 	 $toPrint .= "js/food.js";
+			break;
+		case "bars":
+			$toPrint .= "'js/bars.js'";
+			break;
+		case "coffee":
+			$toPrint .= "'js/coffee.js'";
+			break;
+		case "shops":
+			$toPrint .= "'js/shops.js'";
+			break;
+		case "park":
+			$toPrint .= "'js/parks.js'";
+			break;
+		case "dogNeeds":
+			$toPrint .= "'js/dogNeeds.js'";
+			break;
+		default:
+			$toPrint .= "'js/all.js'";
+			break;
+		}
+	$toPrint .= "></script>";
+	echo $toPrint;
+}
+?>
     <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
     <script src="js/bootstrap.min.js"></script>
-	<script src="js/script.js"></script>
-	<!-- <?php echo'<script src="js/script-food.js"></script>'?> -->
+    <script src="js/nav.js"></script>
 </body>
 </html>

@@ -170,17 +170,6 @@ nav {
 	}
 }
 
-/* FORM */ /* FORM */ /* FORM */ /* FORM */ /* FORM */ /* FORM */ /* FORM */
-
-input {
-	border-width: 2px;
-	border-color: $red-color;
-}
-.btn {
-	border-width: 2px;
-	border-color: $red-color;
-}
-
 
 /* HOMEPAGE */ /* HOMEPAGE */ /* HOMEPAGE */ /* HOMEPAGE */ /* HOMEPAGE */
 
@@ -189,6 +178,24 @@ input {
 	background-image: url("../img/freyja1.png");
 	text-align: center;
 	padding: 15vh;
+
+	a {
+		img {
+			margin-top: 10vh;
+		}
+	}
+}
+form {
+	margin-top: 2%;
+}
+input {
+	border-width: 2px;
+	border-color: $red-color;
+}
+.btn {
+	margin-top: 2%;
+	border-width: 2px;
+	border-color: $red-color;
 }
 
 #browseType {
@@ -416,14 +423,19 @@ input {
 	margin: 0 auto;
 	text-align: center;
 	color: black;
-}
-header {
-	padding: 5%;
 
-	h2 {
-		color: $red-color;
+	header {
+		padding: 5%;
+		width: 50%;
+		margin: 0 auto;
+		padding-bottom: 1%;
+
+		h2 {
+			color: $red-color;
+		}
 	}
 }
+
 #upload {
 	label {
 		margin: 2%;
@@ -438,7 +450,22 @@ header {
 .signUpFoot {
 	cursor: pointer;
 }
+.dashboardImg {
+	position: absolute;
+	float: left;
+	width: 20%;
+	margin-top: 2%;
+	margin-left: 10%;
+	border: 3px solid $red-color;
 
+}
+.modal-body {
+	height: 25vh;
+
+	.btn {
+		margin-top: 3vh;
+	}
+}
 
 
 
